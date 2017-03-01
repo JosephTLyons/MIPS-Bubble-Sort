@@ -28,21 +28,25 @@
 
 main: 
       # Temp values to test program
-      addi $t9, $zero, 15 # Random numbers are being stored in sequential memory
-      addi $t0, $s0, 2
-      sw   $t0, 0($sp)
-      addi $t0, $s0, 2
-      sw   $t0, -4($sp)
-      addi $t0, $s0, -19
-      sw   $t0, -8($sp)
-      la   $t3, 0($sp)
+        addi $s0, $zero, 3
+        addi $t9, $zero, 15 # Random numbers are being stored in sequential memory
+        addi $t0, $s0, 2
+        sw   $t0, 0($sp)
+        addi $t0, $s0, 2
+        sw   $t0, -4($sp)
+        addi $t0, $s0, -19
+        sw   $t0, -8($sp)
+        la   $t3, 0($sp)
 
-
-      
-      # Program actually starts here
-      add  $s1, $zero, $zero # Initialize i to zero
-      addi $t0, $s0,   -1    # $t0 = n - 1
-      slt  $t1, $s1,   $t0   # i < n - 1
-      beq  $t1, $zero, Exit
+        # Program actually starts here
+        add  $s1, $zero, $zero # Initialize i to zero
+        addi $t0, $s0,   -1    # $t0 = n - 1
+ Outer: slt  $t1, $s1,   $t0   # i < n - 1
+        beq  $t1, $zero, Exit  # Exit when i >= n - 1
+        
+        
+        
+        addi $s1, $s1, 1      # Increment i
+        j Outer
       
 Exit:
