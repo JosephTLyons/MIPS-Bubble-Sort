@@ -27,6 +27,7 @@
 # $t1 = 0 or 1 in true false statements (slt) - outer loop
 # $t2 = $t0 - 1 (n - i - 1)
 # $t3 = 0 or 1 in true false statements (slt) - inner loop
+# $t4 = j * 4 = actual array location
 
 main: 
       # Temp values to test program
@@ -53,12 +54,13 @@ Outer:  slt  $t1, $s1,   $t0   # i < n - 1
 Inner:  slt  $t3, $s2,   $t2   # j < (n - i - 1)
         beq  $t3, $zero, Leave # Exit when j >= (n - i - 1)
         
+        sll $t4, $s2, 2        # j * 4
  
 
-        addi $s2, $s2, 1      # Increment j
+        addi $s2, $s2, 1       # Increment j
         j Inner               
         
- Leave: addi $s1, $s1, 1      # Increment i
+ Leave: addi $s1, $s1, 1       # Increment i
         j Outer
       
 Exit:
