@@ -35,11 +35,11 @@ main:
         addi $t9, $zero, 15 # Random numbers are being stored in sequential memory
         addi $sp, $sp, -16
         
-        addi $t9, $s0, 2
+        addi $t9, $s0, -5
         sw   $t9, 12($sp)
-        addi $t9, $s0, 2
+        addi $t9, $s0, -66
         sw   $t9, 8($sp)
-        addi $t9, $s0, -19
+        addi $t9, $s0, -9
         sw   $t9, 4($sp)
         addi $t9, $s0, -23
         sw   $t9, 0($sp)
@@ -62,11 +62,15 @@ Inner:  slt  $t3, $s2,   $t2   # j < (n - i - 1)
         lw   $t6, 0($t5)
         lw   $t7, 4($t5)
         slt  $t8, $t7, $t6
+        beq  $t8, $zero, Skip
         
-        
+        #swap
+        add  $t9, $t6, $zero
+        sw   $t7, 0($t5)
+        sw   $t9, 4($t5)
  
 
-        addi $s2, $s2, 1       # Increment j
+Skip:   addi $s2, $s2, 1       # Increment j
         j Inner               
         
  Leave: addi $s1, $s1, 1       # Increment i
