@@ -36,8 +36,8 @@
 
 main: 
         # Loading values to test bubble sort
-        addi $s0, $zero, 5  # n numbers in array
-        addi $t1, $zero, 78 # Random numbers are being stored in sequential memory
+        addi $s0, $zero, 5     # n numbers in array
+        addi $t1, $zero, 78    # Random numbers are being stored in sequential memory
         addi $sp, $sp, -20
         
         addi $t1, $s0, -44
@@ -63,14 +63,14 @@ Outer:  slt  $t1, $s1,   $t0   # i < n - 1
 Inner:  slt  $t3, $s2,   $t2   # j < (n - i - 1)
         beq  $t3, $zero, Leave # Exit when j >= (n - i - 1)
         
-        sll  $t4, $s2, 2       # j * 4
+        sll  $t4, $s2, 2       # j * 4 to get address offset
         
-        add  $t5, $s3, $t4     # Compare array[j] > array[j + 1]
-        lw   $t6, 0($t5)
-        lw   $t7, 4($t5)
-        slt  $t8, $t7, $t6
-        beq  $t8, $zero, Skip
-        
+        add  $t5, $s3, $t4     # Offset the address of $s3 to array[j]
+        lw   $t6, 0($t5)       # Load array[j] into $t6
+        lw   $t7, 4($t5)       # Load array[j + 1] into $t7
+        slt  $t8, $t7, $t6     # Compare j + 1 < j
+        beq  $t8, $zero, Skip  # Perform swap if numbers are out of order
+
         add  $t9, $t6, $zero   # Perform swap
         sw   $t7, 0($t5)
         sw   $t9, 4($t5)
