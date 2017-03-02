@@ -40,15 +40,15 @@ main:
         addi $t1, $zero, 78    # Random numbers are being stored in sequential memory
         addi $sp, $sp, -20
         
-        addi $t1, $s0, -44
+        addi $t1, $zero, -44
         sw   $t1, 16($sp)
-        addi $t1, $s0, 233
+        addi $t1, $zero, 233
         sw   $t1, 12($sp)
-        addi $t1, $s0, -9
+        addi $t1, $zero, -9
         sw   $t1, 8($sp)
-        addi $t1, $s0, -23
+        addi $t1, $zero, -23
         sw   $t1, 4($sp)
-        addi $t1, $s0, 45
+        addi $t1, $zero, 45
         sw   $t1, 0($sp)
         add  $s3, $sp, $zero   # Load base address into $s3
 
