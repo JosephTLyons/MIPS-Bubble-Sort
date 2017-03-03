@@ -1,5 +1,5 @@
 # Title: Homework 4 part 7 - bonus	    #Filename: Part7.asm
-# Author: Joseph Lyons				    #Date: March 1st, 2017
+# Author: Joseph Lyons                      #Date: March 1st, 2017
 # Description: Bubble sort
 # Input: None
 # Output: None
